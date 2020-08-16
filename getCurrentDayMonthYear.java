@@ -21,7 +21,7 @@
 
 	protected String getCurrentYear() {
 		DateTime now = new DateTime(DateTimeZone.UTC);
-		return now.getYear() + "";
+		return String.valueOf(now.getYear());
 	}
 
 	protected String getToday() {
