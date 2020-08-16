@@ -7,7 +7,7 @@ protected String getCurrentDay() {
 		}
 		return day + "";
 	}
-
+// Nếu lấy giờ local thì ko cần truyền giá trị "DateTimeZone.UTC"
 	protected String getCurrentMonth() {
 		DateTime now = new DateTime(DateTimeZone.UTC);
 		int month = now.getMonthOfYear();
