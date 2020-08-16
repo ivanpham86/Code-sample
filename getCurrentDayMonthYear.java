@@ -1,13 +1,14 @@
-protected String getCurrentDay() {
+// Nếu lấy giờ local thì ko cần truyền giá trị "DateTimeZone.UTC"
+	protected String getCurrentDay() {
 		DateTime nowUTC = new DateTime(DateTimeZone.UTC);
 		int day = nowUTC.getDayOfMonth();
 		if (day < 10) {
 			String dayValue = "0" + day;
 			return dayValue;
 		}
-		return day + "";
+		return String.valueOf(day);
 	}
-// Nếu lấy giờ local thì ko cần truyền giá trị "DateTimeZone.UTC"
+
 	protected String getCurrentMonth() {
 		DateTime now = new DateTime(DateTimeZone.UTC);
 		int month = now.getMonthOfYear();
@@ -15,7 +16,7 @@ protected String getCurrentDay() {
 			String monthValue = "0" + month;
 			return monthValue;
 		}
-		return month + "";
+		return String.valueOf(month);
 	}
 
 	protected String getCurrentYear() {
