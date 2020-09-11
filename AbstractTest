@@ -9,11 +9,22 @@ public abstract class AbstractTestWordpress {
 	public WebDriver getBrowserDriver(String browserName, String appURL) {
 		if (browserName.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
-//			System.setProperty("webdriver.gecko.driver", "./BrowserDriver/geckodriver");
+			System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
+			System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, GlobalConstants.BROWSER_LOG_FOLDER + "\\FirefoxLog.txt");
 			driver = new FirefoxDriver();
+			driver.manage().window().maximize();
+		} else if (browserName.equalsIgnoreCase("firefox_headless")) {
+			WebDriverManager.firefoxdriver().setup();
+			FirefoxOptions firefoxOptions = new FirefoxOptions();
+			firefoxOptions.setHeadless(true);
+			driver = new FirefoxDriver(firefoxOptions);
 			driver.manage().window().maximize();
 		} else if (browserName.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--lang=en");
+			options.setExperimentalOption("useAutomationExtension", false);
+			options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
 		} else if (browserName.equalsIgnoreCase("chrome_headless")) {
